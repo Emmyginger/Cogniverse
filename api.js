@@ -1,6 +1,6 @@
 async function callAIAPI(prompt) {
     const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-    const apiKey = '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'; 
+    const apiKey = 'API_KEY'; 
     const model = 'openai/gpt-5-chat'; 
 
     const payload = {
