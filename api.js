@@ -4,9 +4,9 @@ async function callAIAPI(prompt) {
     const model = 'openai/gpt-5-chat'; 
 
     const payload = {
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 200
+        model: model,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 200
     };
     
     try {
