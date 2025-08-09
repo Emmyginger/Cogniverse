@@ -1,15 +1,36 @@
-// Set default theme
 document.body.classList.add('light-mode');
 
-// Load chat history on page load
+let currentChatId = Date.now();
+let chats = JSON.parse(localStorage.getItem('cogniverseChats')) || {};
+
+// Load last chat
 window.onload = function () {
-    let history = JSON.parse(localStorage.getItem('chatHistory')) || [];
-    history.forEach(msg => appendMessage(msg.sender, msg.message));
+    loadLibrary();
+    if (chats[currentChatId]) {
+        chats[currentChatId].forEach(msg => appendMessage(msg.sender, msg.message));
+    }
 };
 
 function toggleTheme() {
     document.body.classList.toggle('dark-mode');
     document.body.classList.toggle('light-mode');
+}
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('show');
+}
+
+function toggleSettings() {
+    const modal = document.getElementById('settings-modal');
+    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+}
+
+function newChat() {
+    currentChatId = Date.now();
+    document.getElementById('chat-box').innerHTML = "";
+    chats[currentChatId] = [];
+    saveChats();
+    loadLibrary();
 }
 
 async function sendMessage() {
@@ -35,7 +56,45 @@ function appendMessage(sender, message) {
 }
 
 function saveMessage(sender, message) {
-    let history = JSON.parse(localStorage.getItem('chatHistory')) || [];
-    history.push({ sender, message });
-    localStorage.setItem('chatHistory', JSON.stringify(history));
+    if (!chats[currentChatId]) chats[currentChatId] = [];
+    chats[currentChatId].push({ sender, message });
+    saveChats();
 }
+
+function saveChats() {
+    localStorage.setItem('cogniverseChats', JSON.stringify(chats));
+}
+
+function loadLibrary() {
+    const library = document.getElementById('chat-library');
+    library.innerHTML = "";
+    Object.keys(chats).forEach(id => {
+        let li = document.createElement('li');
+        li.textContent = `Chat ${id}`;
+        li.onclick = () => loadChat(id);
+        library.appendChild(li);
+    });
+}
+
+function loadChat(id) {
+    currentChatId = id;
+    document.getElementById('chat-box').innerHTML = "";
+    chats[id].forEach(msg => appendMessage(msg.sender, msg.message));
+}
+
+function searchChats() {
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+    const library = document.getElementById('chat-library');
+    library.innerHTML = "";
+    Object.keys(chats).forEach(id => {
+        if (chats[id].some(msg => msg.message.toLowerCase().includes(searchTerm))) {
+            let li = document.createElement('li');
+            li.textContent = `Chat ${id}`;
+            li.onclick = () => loadChat(id);
+            library.appendChild(li);
+        }
+    });
+}
+async function callAIAPI(prompt) {
+    const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
+    const api
