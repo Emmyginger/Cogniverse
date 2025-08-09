@@ -6,19 +6,26 @@
     <title>Cogniverse</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="light-mode">
+
+    <!-- Header -->
+    <header class="chat-header">
+        <h1>Cogniverse</h1>
+        <button class="theme-btn" onclick="toggleTheme()">Toggle Theme</button>
+    </header>
+
+    <!-- Chat Container -->
     <div class="chat-container">
-        <div class="theme-toggle">
-            <button onclick="toggleTheme()">Toggle Theme</button>
-        </div>
         <div class="chat-box" id="chat-box">
-            <!-- Chat messages will be appended here -->
+            <!-- Chat messages will appear here -->
         </div>
+
         <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type a message...">
+            <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter'){sendMessage()}">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
+
     <script src="chat.js"></script>
     <script src="api.js"></script>
 </body>
