@@ -8,21 +8,40 @@
 </head>
 <body class="light-mode">
 
-    <!-- Header -->
-    <header class="chat-header">
-        <h1>Cogniverse</h1>
-        <button class="theme-btn" onclick="toggleTheme()">Toggle Theme</button>
-    </header>
-
-    <!-- Chat Container -->
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <!-- Chat messages will appear here -->
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2 class="logo">Cogniverse</h2>
+        <button onclick="newChat()">🆕 New Chat</button>
+        <input type="text" id="search-bar" placeholder="🔍 Search chats..." oninput="searchChats()">
+        <div class="library-section">
+            <h3>📚 Library</h3>
+            <ul id="chat-library"></ul>
         </div>
+        <button onclick="toggleSettings()">⚙️ Settings</button>
+    </div>
 
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter'){sendMessage()}">
-            <button onclick="sendMessage()">Send</button>
+    <!-- Main Chat Area -->
+    <div class="main-content">
+        <header class="chat-header">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+            <h1 id="chat-title">Current Chat</h1>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter'){sendMessage()}">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleSettings()">&times;</span>
+            <h2>Settings</h2>
+            <button onclick="toggleTheme()">Toggle Theme</button>
         </div>
     </div>
 
