@@ -95,6 +95,3 @@ function searchChats() {
         }
     });
 }
-async function callAIAPI(prompt) {
-    const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-    const api
