@@ -162,6 +162,37 @@ body {
     font-size: 20px;
 }
 
+
+
+.chat-input button {
+    padding: 12px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-left: 5px;
+    font-size: 18px;
+}
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+/* File message */
+.file-message {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+/* Voice message */
+.audio-message audio {
+    width: 200px;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .sidebar {
