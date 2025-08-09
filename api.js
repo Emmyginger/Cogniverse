@@ -1,14 +1,14 @@
 async function callAIAPI(prompt) {
     const apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
     const apiKey = 'API_KEY'; 
-    const model = 'openai/gpt-5-chat'; 
+    const model = 'openai/gpt-5-chat';
 
     const payload = {
         model: model,
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 200
     };
-    
+
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
