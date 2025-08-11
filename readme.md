@@ -11,6 +11,8 @@ A modern, responsive AI chat application with beautiful gradients and smooth ani
    - `api.js`
 
 2. **Setup API Key**:
+   - Head over to https://openrouter.ai/ and sign up if you don't have an account.
+   - Click on profile and then 'keys' to create an API key.
    - Open `api.js`
    - Replace `'YOUR_API_KEY_HERE'` with your OpenRouter API key
    - Change model if needed (default: `openai/gpt-4`)
